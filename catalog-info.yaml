@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: kondareddyr-poi-map-app-dev
+  annotations:
+    argocd/app-name: kondareddyr-poi-map-app-dev
+    backstage.io/kubernetes-id: kondareddyr-poi-map-app
+    backstage.io/kubernetes-namespace: kondareddyr
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rosa916-rvhvd/kondareddyr-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/dev-pipelines/ns/kondareddyr/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/k8s/ns/kondareddyr/deployments/kondareddyr-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa916.9nln.p1.openshiftapps.com/#https://github.com/rosa916-rvhvd/kondareddyr-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://kondareddyr-poi-map-app-kondareddyr.apps.rosa916.9nln.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/kondareddyr"
+  system: workshop-system-kondareddyr
+  consumesApis:
+    - gateway-api-kondareddyr
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-kondareddyr
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/kondareddyr"
